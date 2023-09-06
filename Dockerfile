@@ -8,10 +8,15 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 RUN echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" > /etc/apt/sources.list
 RUN apt-get -y update
 # socat can be used to proxy an external port and make it look like it is local
-RUN apt-get -y install ca-certificates socat openssh-server supervisor rpl pwgen
+RUN apt-get -y install apt-utils bash ca-certificates openssh-server pwgen rpl socat supervisor
+
+RUN chsh /usr/bin/bash
+ADD my-motd /etc/update-motd.d/10-my-motd
+RYN chmod 0755 /etc/update-motd.d/10-my-motd
+RUN rm /etc/update-motd.d/10-help-text /etc/update-motd.d/50-motd-news
+
 RUN mkdir /var/run/sshd
 ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
-
 EXPOSE 22
 
 # Ubuntu by default only allows non-password-based root login.
