@@ -8,7 +8,7 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 RUN echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" > /etc/apt/sources.list
 RUN apt-get -y update
 # socat can be used to proxy an external port and make it look like it is local
-RUN apt-get -y install apt-utils bash ca-certificates openssh-server pwgen rpl socat supervisor
+RUN apt-get -y install bash ca-certificates openssh-server pwgen rpl socat supervisor
 
 RUN chsh /usr/bin/bash
 ADD my-motd /etc/update-motd.d/10-my-motd
