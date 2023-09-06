@@ -12,7 +12,7 @@ RUN apt-get -y install apt-utils bash ca-certificates openssh-server pwgen rpl s
 
 RUN chsh /usr/bin/bash
 ADD my-motd /etc/update-motd.d/10-my-motd
-RYN chmod 0755 /etc/update-motd.d/10-my-motd
+RUN chmod 0755 /etc/update-motd.d/10-my-motd
 RUN rm /etc/update-motd.d/10-help-text /etc/update-motd.d/50-motd-news
 
 RUN mkdir /var/run/sshd
