@@ -10,7 +10,7 @@ RUN apt-get -y update
 # socat can be used to proxy an external port and make it look like it is local
 RUN apt-get -y install bash ca-certificates openssh-server pwgen rpl socat supervisor
 
-RUN chsh /usr/bin/bash
+RUN chsh -s /usr/bin/bash
 ADD my-motd /etc/update-motd.d/10-my-motd
 RUN chmod 0755 /etc/update-motd.d/10-my-motd
 RUN rm /etc/update-motd.d/10-help-text /etc/update-motd.d/50-motd-news
